@@ -1,0 +1,76 @@
+rbac:
+  enabled: true
+#--------------------------------------------------------
+kibana:
+  name: kibana
+  replicaCount: 1
+  image:
+    repository: kibana 
+    tag: 6.5.1
+    pullPolicy: IfNotPresent
+  service:
+    type: LoadBalancer
+    port: 5601
+    #nodePort: 30086
+  ingress:
+    enabled: false
+    annotations:
+      kubernetes.io/ingress.class: "gce"
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"i
+      #kubernetes.io/ingress.class: traefik
+      #traefik.ingress.kubernetes.io/auth-type: "basic"
+      #traefik.ingress.kubernetes.io/auth-secret: "ingress-secret"
+    path: /
+    hosts:
+      - monitor.ns-devsecops.com
+     
+    #tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  resources:
+    limits:
+      cpu: 1000m
+    requests:
+      cpu: 100m
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  files:
+#-----------------------------------------------------------------------    
+elasticsearch:
+  name: elasticsearch
+  replicaCount: 1
+  image:
+    repository: docker.elastic.co/elasticsearch/elasticsearch
+    tag: 6.5.1
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 9200
+  resources:
+    limits:
+      cpu: 1000m
+    requests:
+      cpu: 100m
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+#--------------------------------------------------------
+fluentdElasticsearch:
+  name: fluentd-elasticsearch
+  image:
+    repository: quay.io/fluentd_elasticsearch/fluentd
+    tag: v3.0.1
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  dockerContainersPath: /var/lib/docker/containers

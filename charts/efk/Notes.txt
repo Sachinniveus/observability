@@ -1,0 +1,10 @@
+Pre-Requisites:
+  - Helm chart installed in the k8s cluster
+  
+
+Installation instructions:
+	- kubectl create ns logging
+ 	- helm add repo repo name.
+	- helm install efk <folder/foldername> -n logging --set kibana.ingress.hosts=<hostname>
+ 		example: helm install efk logging/efk -n logging
+  
