@@ -3,12 +3,12 @@ entries:
   efk:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-05-21T17:31:34.337948509+05:30"
+    created: "2024-05-21T17:47:50.658033273+05:30"
     description: A Helm chart for Kubernetes
     digest: b1e2ae5058c76a14665beaaf558e599cde6731a45ea944be23713ef997ecb6d1
     name: efk
     type: application
     urls:
-    - https://github.com/Sachinniveus/observability/efk-0.1.0.tgz
+    - https://sachinniveus.github.io/observability/efk-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-21T17:31:34.337489491+05:30"
+generated: "2024-05-21T17:47:50.656882108+05:30"
